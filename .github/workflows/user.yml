@@ -1,3 +1,4 @@
+# roboshop-user/.github/workflows/user.yml
 name: user
 on:
   push: { branches: [main] }
@@ -6,8 +7,8 @@ jobs:
   ci:
     uses: bunnyrdy/ArgoCD_Project/.github/workflows/ci.yml@main
     with:
-      language: user == node? -> node
+      language: node
       component: user
-      valuesPath: charts/user-deploy/helm/values.yaml
+      deploy: false          # so it bumps gitops; faithful ci.yml defaults this to false
     secrets:
       GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
